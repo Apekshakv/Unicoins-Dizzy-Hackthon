@@ -1,30 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="/cbc.css">
-  <title>UniCoins</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/cbc.css">
+    <title>UniCoins</title>
+    <style>
+        /* Existing styles from cbc.css go here */
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            flex-grow: 1;
+            display: flex;
+            position: relative;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 15%; /* Initial position */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #D4AC0D;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            z-index: 10;
+        }
+
+        .scroll-down.active {
+            bottom: 30px; /* Adjusted position when contributors are visible */
+        }
+
+        .scroll-down:hover {
+            background-color: #B7950B;
+        }
+
+        .contributors-section {
+            background-color: #FFEB3B;
+            padding: 40px;
+            text-align: center;
+            display: none;
+        }
+
+        .contributors-section h2 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .contributors-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contributor {
+            background-color: #fff;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 200px;
+        }
+
+        .contributor h3 {
+            color: #D4AC0D;
+            margin-bottom: 10px;
+            font-size: 1.8em;
+        }
+
+        .contact-info {
+            background-color: #D4AC0D;
+            color: #fff;
+            padding: 30px;
+            text-align: center;
+            font-size: 1.4em;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 10px;
+        }
+
+        .contact-info p {
+            margin-bottom: 5px;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="left-section">
-        
-        <img src="/images/unicoin-logo.jpg" alt="UniCoin Logo">
- 
-      <h2>Empowering Campus Life with UniCoins</h2>
-      <p>Discover how UniCoins can transform your college</p>
-      <div class="bottom-icons">
-        <img src="/images/" alt="Icon 1"> 
-        <img src="icon-2.png" alt="Icon 2"> 
-      </div>
+    <div class="container">
+        <div class="left-section">
+    
+            <h2>Empowering Campus Life with UniCoins</h2>
+            <p>Discover how UniCoins can transform your college</p>
+            
+        </div>
+        <div class="right-section">
+            <h1>Unlock the Convenience of UniCoins</h1>
+            <p>UniCoins is the essential campus financial tool, providing you with a centralized platform to manage your funds, track expenses, and make payments with ease. Say goodbye to the hassle of carrying cash and embrace the future of campus life.</p>
+            <a href="/login">Explore UniCoins</a>
+        </div>
+        <img src="/images/logo.jpg" alt="Company Logo" class="company-logo">
+        <button class="scroll-down" onclick="toggleContributors()">Explore more about founder</button>
     </div>
-    <div class="right-section">
-      <h1>Unlock the Convenience of UniCoins</h1>
-      <p>UniCoins is the essential campus financial tool, providing you with a centralized platform to manage your funds, track expenses, and make payments with ease. Say goodbye to the hassle of carrying cash and embrace the future of campus life.</p>
-      <a href="/login">Explore UniCoins</a>
+
+    <div class="contributors-section">
+        <h2>Meet the Team</h2>
+        <div class="contributors-list">
+            <div class="contributor">
+                <h3>Priyanshi Trivedi</h3>
+                <p>Frontend Developer</p>
+            </div>
+            <div class="contributor">
+                <h3>Apeksha</h3>
+                <p>Backend Developer</p>
+            </div>
+            <div class="contributor">
+                <h3>Deeksha</h3>
+                <p>UI/UX Designer</p>
+            </div>
+            <div class="contributor">
+                <h3>Vamshika</h3>
+                <p>Project Manager</p>
+            </div>
+        </div>
     </div>
-    <img src="company-logo.png" alt="Company Logo" class="company-logo">
-  </div>
+
+    <div class="contact-info">
+        <h3>Contact Us</h3>
+        <p><strong>Customer Care:</strong> 9508702040</p>
+        <p><strong>Email:</strong> trivedipriyanshi072004@gmail.com</p>
+      
+    </div>
+
+    <script>
+        function toggleContributors() {
+            const contributorsSection = document.querySelector('.contributors-section');
+            const scrollDownButton = document.querySelector('.scroll-down');
+            if (contributorsSection.style.display === 'block') {
+                contributorsSection.style.display = 'none';
+                scrollDownButton.classList.remove('active'); // Remove active class
+            } else {
+                contributorsSection.style.display = 'block';
+                scrollDownButton.classList.add('active'); // Add active class
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    </script>
 </body>
 </html>

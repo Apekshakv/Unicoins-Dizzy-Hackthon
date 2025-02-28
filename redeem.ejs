@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redeem UniCoins</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .redeem-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 500px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #D4AC0D;
+            margin-bottom: 20px;
+            font-size: 3em;
+            font-weight: bold;
+        }
+
+        p {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+        }
+
+        strong {
+            font-weight: bold;
+            color: #333;
+        }
+
+        h3 {
+            color: #D4AC0D;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+
+        .shop-list {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            width: 100%;
+            text-align: left;
+        }
+
+        input[type="radio"] {
+            margin-right: 20px;
+            transform: scale(1.5);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="number"] {
+            padding: 15px 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            width: 80%;
+            box-sizing: border-box;
+            font-size: 1.2em;
+        }
+
+        button {
+            background-color: #D4AC0D;
+            color: white;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.4em;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #B7950B;
+        }
+
+        a {
+            color: #D4AC0D;
+            text-decoration: none;
+            margin-top: 25px;
+            display: block;
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="redeem-container">
+        <h2>Redeem UniCoins</h2>
+        <p><strong>Available UniCoins:</strong> <%= user.uniCoins %></p>
+
+        <h3>Select a Shop to Redeem From</h3>
+        <div class="shop-list">
+            <label>
+                <input type="radio" name="shop" value="Hatti Kaapi" required>
+                Hatti Kaapi - 60 UniCoins = 1 Masala Dosa
+            </label>
+
+            <label>
+                <input type="radio" name="shop" value="Stationary Shop" required>
+                Stationary Shop - 1 UniCoin = 1 Pen
+            </label>
+
+            <label>
+                <input type="radio" name="shop" value="Fresh Choice" required>
+                Fresh Choice - 50 UniCoins = 1 Fruit Salad
+            </label>
+
+            <label>
+                <input type="radio" name="shop" value="Udaya Upahara" required>
+                Udaya Upahara - 70 UniCoins = 1 Plate of Idli
+            </label>
+        </div>
+
+        <form action="/redeem" method="POST">
+            <input type="hidden" name="userId" value="<%= user.userId %>">
+            <input type="number" name="coins" placeholder="Enter UniCoins to redeem" required min="1">
+            <button type="submit">Redeem</button>
+        </form>
+
+        <br>
+        <a href="/wallet/<%= user.userId %>">Back to Wallet</a>
+    </div>
+</body>
+</html>

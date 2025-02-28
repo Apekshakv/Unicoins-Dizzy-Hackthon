@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Payment</title>
+    <link rel="stylesheet" href="/paymen.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Pay Vendor</h2>
+
+        <!-- QR Scanner (Canvas-Based) -->
+        <video id="video" autoplay playsinline></video>
+        <canvas id="canvas"></canvas>
+        <button id="startScan">Start Camera</button>
+        <button id="captureQR" disabled>Scan QR Code</button>
+        <p id="qrMessage"></p>
+
+        <form action="/pay-vendor" method="POST">
+            <label for="vendorId">Vendor Unique ID or Scan QR:</label>
+            <input type="text" id="vendorId" name="vendorId" placeholder="Enter Vendor ID" required>
+
+            <label for="amount">Amount (₹):</label>
+            <input type="number" id="amount" name="amount" placeholder="Enter Amount" required min="1">
+
+            <button type="submit">Confirm Payment</button>
+        </form>
+
+        <p><a href="/wallet/<%= user.userId %>">Back to Wallet</a></p>
+    </div>
+
+    <script>
+        const video = document.getElementById("video");
+        const canvas = document.getElementById("canvas");
+        const context = canvas.getContext("2d");
+        const vendorIdInput = document.getElementById("vendorId");
+        const qrMessage = document.getElementById("qrMessage");
+
+        document.getElementById("startScan").addEventListener("click", async function () {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+                video.srcObject = stream;
+                document.getElementById("captureQR").disabled = false;
+            } catch (error) {
+                alert("Camera access denied!");
+            }
+        });
+
+        document.getElementById("captureQR").addEventListener("click", function () {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            
+            // Simulating QR code detection
+            setTimeout(() => {
+                vendorIdInput.value = "VENDOR123"; // Example scanned data
+                qrMessage.innerText = "QR Code Scanned Successfully!";
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/leaderboard.css">
+    <title>Leaderboard</title>
+</head>
+<body>
+    <h2>Leaderboard - Top UniCoins Redeemers</h2>
+    <div class="leaderboard">
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>UniCoins Redeemed</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% leaderboard.forEach((user, index) => { %>
+                    <tr>
+                        <td class="rank">#<%= index + 1 %></td>
+                        <td><%= user.name %></td>
+                        <td><%= user.totalRedeemed %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+    
+  
+</body>
+</html>
+
