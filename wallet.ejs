@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/wallet.css">
+    <title>Wallet</title>
+</head>
+<body>
+    <% if (typeof user !== "undefined") { %> 
+        <div class="wallet-container">
+            <h2> Pay Balance</h2>
+
+            <div class="balance-box">
+                <p>Available Balance</p>
+                <span>₹<%= user.balance %></span>
+            </div>
+
+            <div class="uniCoins">UniCoins: <%= user.uniCoins %></div><br><br>
+
+            <div class="action-buttons">
+                <a href="/payment/<%= user.userId %>"><button>Add Money</button></a>
+                <a href="/paymen/<%= user.userId %>"><button>Pay Vendor</button></a>
+                <a href="/redeem/<%= user.userId %>"><button>Redeem UniCoins</button></a>
+                <a href="/leaderboard"><button>View Leaderboard</button></a>
+            </div>
+
+            <a href="/" class="logout">Logout</a>
+        </div>
+    <% } else { %>
+        <p>Error: User not found.</p>
+    <% } %>
+</body>
+</html>
+
